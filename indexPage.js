@@ -1,5 +1,8 @@
 const URL_SERVER_PHP = "/webix_test/php/server.php";
 
+/** ポップアップの ID */
+const ID_POPUP = "id_popup";
+
 function loadMainPage() {
     webix.ui({
         cols: [{
@@ -18,10 +21,8 @@ function loadMainPage() {
                 ]
             }, {
                 view: "button",
-                value: "output message",
-                click: function () {
-                    webix.message("click_button_a");
-                }
+                value: "show popup",
+                popup: ID_POPUP
             }]
         }, {
             rows: [{
@@ -44,12 +45,44 @@ function loadMainPage() {
         }]
     });
 
+    // view の初期化
+    initView();
+}
+
+/** view の初期化 */
+function initView() {
     for (let i = 0; i < 100; i++) {
         $$("list_1").add({
             id: "data_" + i,
             title: "dummy_" + i
         })
     }
+
+    // ポップアップを作成
+    createPopup();
+}
+
+/** ポップアップを作成 */
+function createPopup() {
+    webix.ui({
+        view: "popup",
+        id: ID_POPUP,
+        height: 250,
+        width: 300,
+        body: {
+            view: "form",
+            elements: [
+                { view: "text", label: "t_1" },
+                { view: "text", label: "text_2" },
+                { view: "text", label: "text_3" },
+                {
+                    view: "button", value: "execute", click: function () {
+                        alert("test");
+                    }
+                }
+            ]
+        }
+    })
 }
 
 /** ajax() で GET */
