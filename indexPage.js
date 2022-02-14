@@ -67,12 +67,14 @@ function createPopup() {
         body: {
             view: "form",
             elements: [
+                { view: "template", type: "header", template: "パラメータ" },
                 { view: "text", label: "t_1" },
                 { view: "text", label: "ラベル" },
                 { view: "text", label: "text_3" },
                 {
                     view: "button", value: "execute", click: function () {
-                        alert("test");
+                        webix.message("click popup button");
+                        $$(ID_POPUP).hide();
                     }
                 }
             ]
