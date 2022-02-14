@@ -1,6 +1,5 @@
 const URL_SERVER_PHP = "/webix_test/php/server.php";
 
-/** ポップアップの ID */
 const ID_POPUP = "id_popup";
 
 function loadMainPage() {
@@ -9,7 +8,7 @@ function loadMainPage() {
             rows: [{
                 view: "template",
                 type: "header",
-                template: "list title",
+                template: "テスト title",
                 css: { "background-color": "#adcbd9" }
             }, {
                 view: "list",
@@ -45,11 +44,9 @@ function loadMainPage() {
         }]
     });
 
-    // view の初期化
     initView();
 }
 
-/** view の初期化 */
 function initView() {
     for (let i = 0; i < 100; i++) {
         $$("list_1").add({
@@ -58,11 +55,9 @@ function initView() {
         })
     }
 
-    // ポップアップを作成
     createPopup();
 }
 
-/** ポップアップを作成 */
 function createPopup() {
     webix.ui({
         view: "popup",
@@ -73,7 +68,7 @@ function createPopup() {
             view: "form",
             elements: [
                 { view: "text", label: "t_1" },
-                { view: "text", label: "text_2" },
+                { view: "text", label: "ラベル" },
                 { view: "text", label: "text_3" },
                 {
                     view: "button", value: "execute", click: function () {
@@ -85,14 +80,14 @@ function createPopup() {
     })
 }
 
-/** ajax() で GET */
+/** ajax() GET */
 function reqGet() {
     webix.ajax().get(URL_SERVER_PHP, { get_param: "param for get" }).then(function (data) {
         console.log(data.text());
     })
 }
 
-/** ajax() で POST */
+/** ajax() POST */
 function reqPost() {
     webix.ajax().post(URL_SERVER_PHP, { post_param: "param for post" }).then(function (data) {
         console.log(data.text());
